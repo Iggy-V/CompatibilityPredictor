@@ -20,17 +20,22 @@ def evaluateTeam(teamList):
     Returns:
     attributeData (dict): dictionary that which contains the data attribute: [average, (whether it's lacking in the team 0/1)]
     """
+
+
     attributeData = {}
+    # gets attributes based from the first member of the team
     for i in teamList[0]['attributes']:
         attributeData[i] = []
     
     teamMembers = 0 
+    # creates a list of the attributes values that is going to be used for the average
     for i in teamList:  
         teamMembers += 1
         for j in attributeData.keys():
             attributeData[j].append(i['attributes'].get(j, 0))
     
     weakpoints = 0
+    # checks if there are weakpoints (1-yes, 0-no) in the team and also counts the values
     for i in attributeData.keys():
         if max(attributeData[i]) < 8:
             weakpoints +=1
@@ -54,22 +59,25 @@ def evaluateApplicant(attributeData, applicant):
     dict: of the "name" : name of the applicant and the "score" : score key-value pairs.
     """
     compatibility = 0
-    normalizingConstant = len(applicant['attributes'])
+    normalizingConstant = len(applicant['attributes'])  #constant based on which compatibility is scaled
 
     for i in applicant['attributes']:
+        #adds to compatibility if candidate attribute score higher than the average on the team 
         if applicant['attributes'][i] > attributeData[i][0]:
 
             compatibility += 0.5/(normalizingConstant)
         
+        #adds to compatibility if candidate has extroaordinary ability in one of the fields
         if applicant['attributes'][i] > 8:
 
             compatibility += 0.3/(normalizingConstant)
 
+            # checks if there are weakpoints if not just give all candidates 0.2 increase in compatibility
             if attributeData.get("weakpoints") == 0:
                 compatibility += 0.2/(normalizingConstant)
 
+            # if the candidate covers the weakpoint add to compatibility.
             elif attributeData[i][-1] == 1:
-                print("runs")
                 compatibility += 0.2/(attributeData.get("weakpoints"))
         
 
@@ -94,21 +102,19 @@ def main():
             f = open(file)
             data = json.load(f)
 
-        
             scoredApplicants = {"Scored Applicants" : []}
             teamData = evaluateTeam(data["team"])
-            
-
+        
+            #itterate through each candidate, append the data so that it can be nicely formated in json output
             for i in data["applicants"]:
                 scoredApplicants["Scored Applicants"].append(evaluateApplicant(teamData, i))
 
-
             f.close()
             with open(output_file, "w") as f:
-                json.dump(scoredApplicants, f, indent=4)  # indent parameter for pretty formatting
+                json.dump(scoredApplicants, f, indent=4)
 
         except:
             print("No such .json file in the directory")
-            
+
 if __name__ == "__main__":
     main()

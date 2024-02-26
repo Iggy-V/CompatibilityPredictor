@@ -2,19 +2,23 @@
     "Scored Applicants": [
         {
             "name": "John",
-            "score": 0
-        },
-        {
-            "name": "Jane",
             "score": 0.125
         },
         {
-            "name": "Joe",
+            "name": "Jane",
             "score": 0.25
         },
         {
+            "name": "Joe",
+            "score": 0.3
+        },
+        {
             "name": "Ursula",
-            "score": 0.75
+            "score": 0.7
+        },
+        {
+            "name": "Ignas",
+            "score": 0.575
         }
     ]
 }
