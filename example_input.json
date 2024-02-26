@@ -24,6 +24,14 @@
     "endurance" : 9,
     "spicyFoodTolerance" : 5
     }
+    } ,{
+        "name" : "Ted",
+        "attributes": {
+        "intelligence" : 10,
+        "strength" : 10,
+        "endurance" : 10,
+        "spicyFoodTolerance" : 10
+        }
     }
     ],
     "applicants" : [
@@ -51,6 +59,15 @@
     "endurance" : 1,
     "spicyFoodTolerance" : 10
     }
+    }, {
+        "name" : "Ursula",
+        "attributes": {
+        "intelligence" : 10,
+        "strength" : 10,
+        "endurance" : 10,
+        "spicyFoodTolerance" : 1
+        }
     }
+    
     ]
     }
