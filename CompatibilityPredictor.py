@@ -80,6 +80,10 @@ def evaluateApplicant(attributeData, applicant):
             elif attributeData[i][-1] == 1:
                 compatibility += 0.2/(attributeData.get("weakpoints"))
         
+        # if compatibility is above 1 or below 0 inform that the range of compatibilities is out of range, this indicates an error in prior code
+        if compatibility > 1 or compatibility < 0:
+            print("Inproperly scaled compatibility, must be in the range [0,1]")
+            sys.exit()
 
         
     return {"name": applicant.get("name"), "score" : round(compatibility,3)}
@@ -87,7 +91,21 @@ def evaluateApplicant(attributeData, applicant):
 
 
 def main():
+    """
+    Main function of the program.
 
+    This function serves as the entry point to the program. It reads applicant and team data from a JSON file,
+    evaluates each applicant based on team data, and generates an output JSON file containing scored applicants.
+
+    Raises:
+        FileNotFoundError: If the specified input JSON file is not found.
+        ValueError: If the input file is not a valid JSON file.
+        IOError: If there is an error while reading or writing files.
+
+    Example:
+        To run the program, specify the input JSON file as a command-line argument:
+            python compatibilityPredictor.py input.json
+    """
     if len(sys.argv) != 2:
         print("Usage: <applicant and team data file .json>")
     
@@ -113,7 +131,7 @@ def main():
             with open(output_file, "w") as f:
                 json.dump(scoredApplicants, f, indent=4)
 
-        except:
+        except FileNotFoundError:
             print("No such .json file in the directory")
 
 if __name__ == "__main__":
