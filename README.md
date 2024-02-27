@@ -29,7 +29,7 @@ To use the Compatibility Predictor, follow these steps:
 2. Run the program by executing the following command in your terminal:
 
 ```bash
-python compatibilityPredictor.py input.json
+python CompatibilityPredictor.py input.json
 ```
 
 ## Example
@@ -37,7 +37,7 @@ python compatibilityPredictor.py input.json
 To run the program, specify the input JSON file as a command-line argument.
 To run it with the example_input.json try the following command:
 ```bash
-python compatibilityPredictor.py example_input.json
+python CompatibilityPredictor.py example_input.json
 ```
 
 ## Future Work
