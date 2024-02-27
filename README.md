@@ -4,7 +4,7 @@ Compatibility Predictor is a program designed to predict the compatibility of ca
 
 ## Author
 
-- **Ignas Volcokas**
+- **Ignas Volčokas**
 
 ## Features
 
