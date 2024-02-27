@@ -30,4 +30,13 @@ To use the Compatibility Predictor, follow these steps:
 
 ```bash
 python compatibilityPredictor.py input.json
+```
+
+## Example
+
+To run the program, specify the input JSON file as a command-line argument.
+To run it with the example_input.json try the following command:
+```bash
+python compatibilityPredictor.py example_input.json
+```
 
